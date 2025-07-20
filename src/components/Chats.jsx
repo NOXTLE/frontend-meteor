@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../main";
-import { IoMdAdd } from "react-icons/io";
+import { IoAdd } from "react-icons/io5";
 import axios from "axios";
 
 import {
@@ -140,7 +140,7 @@ const Chats = ({ fetchAgain }) => {
           <DialogTrigger>
             <div className="flex text-md items-center-safe bg-black rounded-md text-white px-3 cursor-pointer hover:bg-green-400 hover:text-white py-2">
               <h3 className="text-sm">New Group Chat</h3>
-              <IoMdAdd className="text-sm" />
+              <IoAdd className="text-sm" />
             </div>
           </DialogTrigger>
           <DialogContent>
