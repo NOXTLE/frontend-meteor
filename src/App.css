@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.app {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("./bg.jpg");
+  display: flex;
+}
+.txt{
+font-family: "PT Sans";
+  font-size:24px;
+}
+.box{
+  background: rgba(255, 255, 255, 0.1);
+    /* transparent white */
+    backdrop-filter: blur(10px);
+}
+
+.bar::-webkit-scrollbar{
+  width: 0
+}
