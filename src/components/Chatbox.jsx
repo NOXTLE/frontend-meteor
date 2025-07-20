@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import axios from "axios";
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://backend-meteor.onrender.com";
 var socket, selectedChatCompare;
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
@@ -93,7 +93,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
         };
 
         const { data } = await axios.post(
-          `http://localhost:8080/api/message`,
+          `https://backend-meteor.onrender.com/api/message`,
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -169,7 +169,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     };
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/api/chat/rename`,
+        `https://backend-meteor.onrender.com/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -201,7 +201,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/api/user?search=${search}`,
+        `https://backend-meteor.onrender.com/api/user?search=${search}`,
         config
       );
       console.log(data);
@@ -223,7 +223,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:8080/api/chat/groupremove`,
+        `https://backend-meteor.onrender.com/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -298,7 +298,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:8080/api/chat/groupadd`,
+        `https://backend-meteor.onrender.com/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -330,7 +330,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/api/message/${selectedChat._id}`,
+        `https://backend-meteor.onrender.com/api/message/${selectedChat._id}`,
         config
       );
 

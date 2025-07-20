@@ -19,7 +19,7 @@ const login = () => {
     setloading(true);
     try {
       const res = await axios
-        .post("http://localhost:8080/api/user/login", {
+        .post("https://backend-meteor.onrender.com/api/user/login", {
           email,
           pwd,
         })

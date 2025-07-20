@@ -99,7 +99,7 @@ const Side = () => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/api/user?search=${search}`,
+        `https://backend-meteor.onrender.com/api/user?search=${search}`,
         config
       );
       setLoading(false);
@@ -122,7 +122,7 @@ const Side = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:8080/api/chat",
+        "https://backend-meteor.onrender.com/api/chat",
         { userId },
         config
       );

@@ -41,7 +41,7 @@ const Chats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/api/user?search=${search}`,
+        `https://backend-meteor.onrender.com/api/user?search=${search}`,
         config
       );
       console.log(data);
@@ -77,7 +77,7 @@ const Chats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        "http://localhost:8080/api/chat",
+        "https://backend-meteor.onrender.com/api/chat",
         config
       );
 
@@ -116,7 +116,7 @@ const Chats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:8080/api/chat/group",
+        "https://backend-meteor.onrender.com/api/chat/group",
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

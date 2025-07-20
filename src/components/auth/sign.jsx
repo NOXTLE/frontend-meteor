@@ -59,7 +59,12 @@ const sign = () => {
     }
     const pwd = password;
     const data = await axios
-      .post("http://localhost:8080/api/user", { name, email, pwd, pic })
+      .post("https://backend-meteor.onrender.com/api/user", {
+        name,
+        email,
+        pwd,
+        pic,
+      })
       .then((res) => res.data);
 
     console.log("data received", data);
