@@ -5,9 +5,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoChevronDownOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
-import { IoMdClose } from "react-icons/io";
+
+import { IoClose } from "react-icons/io5";
 
 import {
   Drawer,
@@ -147,7 +148,7 @@ const Side = () => {
           className="text-white self-end cursor-pointer animate-in"
           onClick={() => setOpen(false)}
         >
-          <IoMdClose />
+          <IoClose />
         </div>
         <input
           onKeyDown={(e) => {
@@ -247,7 +248,7 @@ const Side = () => {
           <DropdownMenuTrigger asChild>
             <div className="bg-white px-2 h-8 w-20 rounded-sm text-black flex  items-center">
               <img className="p-1 h-10" src={user.pic}></img>
-              <IoIosArrowDown />
+              <IoChevronDownOutline />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56" align="start">
