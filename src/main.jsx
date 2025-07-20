@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App.jsx";
 import Home from "./pages/home.jsx";
 import Chat from "./pages/chat.jsx";
-import { IoIosArrowDown } from "react-icons/io";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
