@@ -204,9 +204,13 @@ const Side = () => {
           <p>Search People</p>
         </TooltipContent>
       </Tooltip>
-
-      <h1>METEOR</h1>
-
+      <div className="flex gap-2 items-center justify-center ">
+        <h1>METEOR </h1>
+        <img
+          className="h-12 w-12"
+          src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/294/636/datas/original.png"
+        ></img>
+      </div>{" "}
       <div className="flex items-center gap-2 ">
         <DropdownMenu>
           <DropdownMenuTrigger>
