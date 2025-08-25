@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import ScrollableFeed from "react-scrollable-feed";
 import io from "socket.io-client";
-
+import { IoIosSend } from "react-icons/io";
 //modal import
 
 import {
@@ -82,34 +82,32 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   };
 
   const sendMessage = async (e) => {
-    if (e.key == "Enter" && newMessage) {
-      socket.emit("stop typing", selectedChat._id);
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
+    socket.emit("stop typing", selectedChat._id);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
 
-        const { data } = await axios.post(
-          `https://backend-meteor.onrender.com/api/message`,
-          {
-            content: newMessage,
-            chatId: selectedChat._id,
-          },
-          config
-        );
+      const { data } = await axios.post(
+        `https://backend-meteor.onrender.com/api/message`,
+        {
+          content: newMessage,
+          chatId: selectedChat._id,
+        },
+        config
+      );
 
-        setNewMessage("");
+      setNewMessage("");
 
-        socket.emit("new message", data);
-        setMessages([...messages, data]);
+      socket.emit("new message", data);
+      setMessages([...messages, data]);
 
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -344,11 +342,11 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     <div
       className={`${
         selectedChat ? "max-md:flex" : "max-md:hidden"
-      } min-md:flex bg-white max-md:w-full min-md:w-[68%] rounded-md p-4 text-black flex items-center justify-center`}
+      } min-md:flex bg-zinc-800 max-md:w-full min-md:w-[68%] rounded-md p-4 text-black flex items-center justify-center`}
     >
       {selectedChat ? (
-        <div className="flex h-full w-full flex-col bg-white ">
-          <div className="flex w-full justify-between text-black p-3 max-md:p-2">
+        <div className="flex h-full w-full flex-col bg-zinc-800 rounded-md  ">
+          <div className="flex w-full justify-between text-white p-3 max-md:p-2">
             <div className="flex justify-between w-full">
               <button className="max-md:flex min-md:hidden">back</button>
               <h1 className=" text-lg max-md:text-md  ">
@@ -362,8 +360,8 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
               {selectedChat.isGroupChat ? (
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="p-2 bg-gray-300 rounded-md">
-                      <FaEye />
+                    <button className="p-2 bg-black text-black rounded-md">
+                      <FaEye className="text-black" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
@@ -381,6 +379,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                               key={u._id}
                               className="flex px-2 py-1 bg-green-200 text-black rounded-lg items-center gap-2"
                             >
+                              <img src={u?.pic}></img>
                               {u.name}
                               <button
                                 className="hover:cursor-pointer text-red-700"
@@ -458,7 +457,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
 
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="p-2 bg-gray-300 rounded-md">
+                    <button className="p-2 bg-black rounded-md">
                       <FaEye />
                     </button>
                   </DialogTrigger>
@@ -495,15 +494,9 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
               {/* modal logic ends */}
             </div>
           </div>
-          {/* single chat */}
-          <div
-            style={{
-              backgroundImage: `url("https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/Desktop.png")`,
-              backgroundSize: "cover", // Optional, but common
-              backgroundPosition: "center", // Optional
-            }}
-            className="min-h-[94%] bar flex flex-col w-full rounded-md   bg-gray-100 "
-          >
+          {/* single chat  style={{
+              backgroundImage: `url("https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/Desktop.png")`, */}
+          <div className="min-h-[94%] bar flex flex-col w-full rounded-md   bg-zinc-900 ">
             <div className=" bar flex-11/12 max-h-[100%] flex flex-col overflow-scroll  px-4 py-2 ">
               <ScrollableFeed className="bar">
                 {messages &&
@@ -553,17 +546,32 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
             ) : (
               <div></div>
             )}
-            <input
-              className="bg-white rounded-md border-2 border-gray-300 w-[95%] mb-4 self-center h-12 px-2"
-              placeholder="Enter your message"
-              value={newMessage}
-              onChange={typingHandler}
-              onKeyDown={sendMessage}
-            ></input>
+            <div className="flex items-center gap-2 w-full p-2">
+              <input
+                className="bg-white rounded-md border-2 border-gray-300 w-[95%] mb-4 self-center h-12 px-2"
+                placeholder="Enter your message"
+                value={newMessage}
+                onChange={typingHandler}
+                onKeyDown={(e) => {
+                  if (e.key == "Enter" && newMessage) {
+                    sendMessage();
+                  }
+                }}
+              ></input>
+              <button
+                className="  h-12 text-white flex items-center justify-center mb-4"
+                onClick={sendMessage}
+              >
+                <IoIosSend className="text-white hover:text-blue-300 hover:rotate-45 transition-all text-4xl" />
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        "Click on a user to Start the Chat :) "
+        <h1 className="text-4xl text-white">
+          {" "}
+          Click on a user to Start the Chat , or Search for them using Search{" "}
+        </h1>
       )}
     </div>
   );
