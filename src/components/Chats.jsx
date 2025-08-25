@@ -132,9 +132,9 @@ const Chats = ({ fetchAgain }) => {
     <div
       className={`${
         selectedChat ? "hidden" : "flex"
-      } min-md:flex flex-col items-center max-md:w-full bg-white min-md:w-[30%] rounded-md`}
+      } min-md:flex flex-col items-center max-md:w-full bg-zinc-800 min-md:w-[30%] rounded-md`}
     >
-      <div className="pb-3 pt-3 px-2 max-md:text-xl min-md:text-3xl flex w-full justify-between items-center text-black ">
+      <div className="pb-3 pt-3 px-2 max-md:text-xl min-md:text-3xl flex w-full justify-between items-center text-white font-bold">
         My Chats
         <Dialog>
           <DialogTrigger>
@@ -224,7 +224,7 @@ const Chats = ({ fetchAgain }) => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex flex-col p-3 bg-gray-200 w-full h-full rounded-lg overflow-hidden">
+      <div className="flex flex-col p-3 bg-zinc-800 w-full h-full rounded-lg overflow-hidden">
         {chats ? (
           <div className="overflow-scroll bar flex flex-col gap-2">
             {chats.map((e) => {
@@ -237,14 +237,14 @@ const Chats = ({ fetchAgain }) => {
                   }}
                   key={e._id}
                   className={` hover:bg-gray-300 cursor-pointer gap-2 text-black px-3 py-2 rounded-md h-15 flex items-center  border-2 border-gray-100
-    ${selectedChat?._id === e._id ? "bg-teal-500 text-white" : "bg-white"}`}
+    ${selectedChat?._id === e._id ? "bg-zinc-950 text-white" : "bg-white"}`}
                 >
                   <img
                     className="h-10 w-10 rounded-full"
                     src={getImage(loggedUser, e.users)}
                   ></img>
                   <div>
-                    <p className="text-gray-500">
+                    <p className="text-gray-black font-bold">
                       {!e.isGroupChat
                         ? getSender(loggedUser, e.users)
                         : e.chatName}
