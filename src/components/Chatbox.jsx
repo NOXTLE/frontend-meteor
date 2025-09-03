@@ -631,7 +631,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                                 rel="noopener noreferrer"
                                 className="underline text-blue-300"
                               >
-                                {m.content}
+                                {Join the call}
                               </a>
                             ) : (
                               <span>{m.content}</span>
