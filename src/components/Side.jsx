@@ -74,6 +74,7 @@ const Side = () => {
     notification,
     setNotification,
   } = useContext(Context);
+  const [visible, setVisible] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -140,6 +141,29 @@ const Side = () => {
 
   return (
     <div className="p-2.5 flex justify-between items-center ">
+      {visible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="absolute bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+            <h2 className="text-xl font-bold mb-4">My Profile</h2>
+            <img
+              src={user?.pic}
+              alt="Profile"
+              className="w-24 h-24 rounded-full object-cover border-2 border-gray-300 mx-auto mb-4"
+            />
+            <div className="text-lg font-semibold text-black">
+              Name: {user?.name}
+            </div>
+            <div className="text-gray-700 break-all">Email: {user?.email}</div>
+
+            <button
+              className="mt-6 px-4 py-2 bg-red-700 text-white rounded-md hover:bg-red-800"
+              onClick={() => setVisible(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div
         style={{ display: open == true ? "flex" : "none" }}
         className="w-[45%] min-xl:w-[25%] max-lg:w-[90vw]  absolute h-[90vh]  rounded-md bottom-10 max-md:bottom-5 flex flex-col bg-zinc-950/85 p-2 gap-2"
@@ -261,35 +285,13 @@ const Side = () => {
               <DropdownMenuItem>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="p-2 bg-gray-300 rounded-md">
+                    <button
+                      onClick={() => setVisible(true)}
+                      className="p-2 bg-gray-300 rounded-md"
+                    >
                       Profile
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle>User Info</DialogTitle>
-                    </DialogHeader>
-                    <div className="flex items-center gap-2">
-                      <div className=" flex-1 flex-col gap-2 flex flex-wrap ">
-                        <img src={user.pic}></img>
-                        <div className="text-2xl">Name: {user.name}</div>
-                        <div>Email: {user.email}</div>
-                      </div>
-                    </div>
-                    <div className="flex"></div>
-
-                    <DialogFooter className="sm:justify-around">
-                      <DialogClose asChild>
-                        <Button
-                          className="bg-red-700 text-white"
-                          type="button"
-                          variant="secondary"
-                        >
-                          Close
-                        </Button>
-                      </DialogClose>
-                    </DialogFooter>
-                  </DialogContent>
                 </Dialog>
               </DropdownMenuItem>
             </DropdownMenuGroup>
